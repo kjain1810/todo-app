@@ -31,7 +31,7 @@ function newTodo(new_task) {
   // console.log("newtodo ", new_task);
   var flag = 0;
   for (; new_task === '';) {
-    new_task = prompt('Enter new task: ');
+    new_task = prompt('Awww shucks, new task: ');
     flag = 1;
   }
   if (flag === 1) {

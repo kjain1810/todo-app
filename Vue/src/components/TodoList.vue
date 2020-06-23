@@ -21,7 +21,7 @@
             <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAll">Check All</label></div>
             <div> {{ remaining }} items left </div>
         </div>
-        <div class="extra-component">
+        <div class="extra-container">
             <div>
                 <button :class="{active: filter=='all'}" @click="filter = 'all'"> All </button>
                 <button :class="{active: filter=='active'}" @click="filter = 'active'"> Active </button>
@@ -203,6 +203,8 @@ export default {
         font-size: 14px;
         background-color: white;
         appearance: none;
+        border: none;
+        border-radius: 8px;
     }
     button:hover {
         background: lightgreen;
@@ -219,6 +221,9 @@ export default {
     .fade-enter, .fade-leave-to {
         opacity: 0;
     }
-
+    
+    input {
+        border-radius: 10px;
+    }
 
 </style>

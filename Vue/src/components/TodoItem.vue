@@ -58,7 +58,7 @@ export default {
     },
     methods: {
         removeItem(index) {
-            this.$emit('removedTodo', index)
+            eventBus.$emit('removedTodo', index)
         },
         
         edit() {
@@ -77,7 +77,7 @@ export default {
                 if(this.title.length === 0) {
                     this.title = this.beforeEditCache
                 }
-                this.$emit('finishedEdit', {
+                eventBus.$emit('finishedEdit', {
                     'index': this.index,
                     'todo': {
                         'id': this.id,
@@ -95,7 +95,7 @@ export default {
         },
 
         changeStat() {
-            this.$emit('finishedEdit', {
+            eventBus.$emit('finishedEdit', {
                     'index': this.index,
                     'todo': {
                         'id': this.id,

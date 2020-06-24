@@ -10,7 +10,7 @@
                 @keyup.esc="cancelEdit" v-focus>
             </div>
         </div>
-    <div class="remove-item" @click="removeItem(index)">&times;</div>
+    <div class="remove-item" @click="removeItem(id)">&times;</div>
     </div>
 </template>
 
@@ -57,13 +57,11 @@ export default {
         }
     },
     methods: {
-        removeItem(index) {
-            eventBus.$emit('removedTodo', index)
+        removeItem(id) {
+            this.$store.commit("deleteTodo", id)
         },
         
         edit() {
-            console.log("here")
-            console.log(this.editing)
             if(this.editing == false) {
                 this.editing = true
             }
@@ -77,14 +75,11 @@ export default {
                 if(this.title.length === 0) {
                     this.title = this.beforeEditCache
                 }
-                eventBus.$emit('finishedEdit', {
-                    'index': this.index,
-                    'todo': {
-                        'id': this.id,
-                        'title': this.title,
-                        'editing': this.editing,
-                        'completed': this.completed,
-                    }
+                this.$store.commit('updateTodo', {
+                    'id': this.id,
+                    'title': this.title,
+                    'editing': this.editing,
+                    'completed': this.completed,
                 })
             }
         },
@@ -95,16 +90,12 @@ export default {
         },
 
         changeStat() {
-            eventBus.$emit('finishedEdit', {
-                    'index': this.index,
-                    'todo': {
-                        'id': this.id,
-                        'title': this.title,
-                        'editing': this.editing,
-                        'completed': this.completed,
-                    }
-                }
-            )
+            this.$store.commit('updateTodo', {
+                'id': this.id,
+                'title': this.title,
+                'editing': this.editing,
+                'completed': this.completed,
+            })
         }
     },
 }

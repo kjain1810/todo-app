@@ -5,15 +5,14 @@
 <script>
 export default {
     name: "todo-check-all",
-    props: {
-        anyRemaining: {
-            type: Boolean,
-            require: true,
+    computed: {
+        anyRemaining() {
+            return this.$store.getters.anyRemaining
         }
     },
     methods: {
         allChecked() {
-            eventBus.$emit("checkAllChanged", this.anyRemaining)
+            this.$store.commit('checkAll', event.target.checked)
         }
     }
 }
